@@ -50,7 +50,7 @@ public class Main {
                 return currentNumber; //return highest unique. If more than 1, it is not unique; The loop will stop and return value if freq. in list is 1. If more than 1 it will continue to run until next one is found.
             }
         }
-        return  -1;
+        return  -1; //fallback
     }
 
     static void showSortedList(ArrayList<Integer> myList) {
