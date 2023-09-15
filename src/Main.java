@@ -19,53 +19,56 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //Create list
         createList(myList);
         System.out.println(myList);
-
         System.out.println("-----");
 
+        //Sort & Show list
+        sortList(myList);
         showSortedList(myList);
-
         System.out.println("-----");
 
+        //Get the highest number
         int highest = showHighestUnique(myList);
 
-        if (highest == -1){
+        if (highest == -1) {
             System.out.println("Det finns inget unikt heltal.");
-        }
-        else {
+        } else {
             System.out.println(highest);
         }
 
     }
 
-    static int showHighestUnique(ArrayList<Integer> myList){
+    static int showHighestUnique(ArrayList<Integer> myList) {
 
-        int exists = 0;
-       int highest = myList.get(0);
+        //Loop thru list to check which number is the highest
+        for (int i = 0; i < NUMBER_OF_ROWS; i++) {
 
-        for (int i = 1; i < NUMBER_OF_ROWS; i++) {
-            if (myList.contains(highest)){
-                exists++;
+            int currentNumber = myList.get(i);
+            if (Collections.frequency(myList, currentNumber) == 1) {
+                return currentNumber; //return highest unique. If more than 1, it is not unique; The loop will stop and return value if freq. in list is 1. If more than 1 it will continue to run until next one is found.
             }
         }
-
-        if (exists == 0){
-            highest = -1;
-        }
-        return highest;
+        return  -1;
     }
-    static void showSortedList(ArrayList<Integer> myList){
+
+    static void showSortedList(ArrayList<Integer> myList) {
+
+        for (int number : myList) {
+            System.out.println("- " + number);
+        }
+    }
+    static ArrayList<Integer> sortList(ArrayList<Integer> myList){
 
         //Sort arraylist from highest to lowest
         Collections.sort(myList, Collections.reverseOrder());
 
-        for (int number : myList){
-            System.out.println("- " + number);
-        }
+        return myList;
     }
-    //Create list of random numbers.
-    static ArrayList<Integer> createList(ArrayList<Integer> myList){
+
+    //Create list of random numbers. 1-50.
+    static ArrayList<Integer> createList(ArrayList<Integer> myList) {
 
         for (int i = 0; i < NUMBER_OF_ROWS; i++) {
 
