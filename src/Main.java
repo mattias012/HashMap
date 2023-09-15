@@ -27,9 +27,34 @@ public class Main {
         showSortedList(myList);
 
         System.out.println("-----");
-    
+
+        int highest = showHighestUnique(myList);
+
+        if (highest == -1){
+            System.out.println("Det finns inget unikt heltal.");
+        }
+        else {
+            System.out.println(highest);
+        }
+
     }
 
+    static int showHighestUnique(ArrayList<Integer> myList){
+
+        int exists = 0;
+       int highest = myList.get(0);
+
+        for (int i = 1; i < NUMBER_OF_ROWS; i++) {
+            if (myList.contains(highest)){
+                exists++;
+            }
+        }
+
+        if (exists == 0){
+            highest = -1;
+        }
+        return highest;
+    }
     static void showSortedList(ArrayList<Integer> myList){
 
         //Sort arraylist from highest to lowest
