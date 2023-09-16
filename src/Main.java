@@ -34,6 +34,7 @@ public class Main {
             System.out.println(myList);
             System.out.println("-----");
 
+            //Display hashmap
             createHashMapList(scoreboardHash, myList);
             System.out.println(scoreboardHash);
 
