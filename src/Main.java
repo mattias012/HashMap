@@ -104,11 +104,13 @@ public class Main {
 
     static HashMap<Integer, Integer> createHashMapList(HashMap<Integer, Integer> scoreboardHash, ArrayList<Integer> myList) {
 
-
+        //Add the list to the scoreboard hashmap
         for (int number : myList) {
             scoreboardHash.put(number, 0);
         }
 
+        //for each number in the list, check if it exists, if it does, add 1.
+        //HashMap will ignore duplicates as it is unique.
         for (int checkNumber : myList) {
             if (scoreboardHash.containsKey(checkNumber)) {
 
@@ -116,7 +118,7 @@ public class Main {
                 scoreboardHash.put(checkNumber, updateValue + 1);
             }
         }
-
+        //Return the hashmap
         return scoreboardHash;
     }
 }
