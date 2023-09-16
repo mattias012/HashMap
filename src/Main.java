@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 /*
@@ -17,25 +16,46 @@ public class Main {
     static ArrayList<Integer> myList = new ArrayList<>();
     static final int NUMBER_OF_ROWS = 10;
 
+    static HashMap<Integer, Integer> scoreboardHash = new HashMap<Integer, Integer>();
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        //Create list
-        createList(myList);
-        System.out.println(myList);
-        System.out.println("-----");
+        System.out.println("1. Första versionen \n" +
+                "2. HashMap-versionen");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
 
-        //Sort & Show list
-        sortList(myList);
-        showSortedList(myList);
-        System.out.println("-----");
+        //Run hashmap version
+        if (choice == 2) {
 
-        //Get the highest number
-        int highest = showHighestUnique(myList);
+            //Create list
+            createList(myList);
+            System.out.println(myList);
+            System.out.println("-----");
 
-        if (highest == -1) {
-            System.out.println("Det finns inget unikt heltal.");
-        } else {
-            System.out.println(highest);
+            createHashMapList(scoreboardHash, myList);
+            System.out.println(scoreboardHash);
+        } else { //Run standard version
+
+            //Create list
+            createList(myList);
+            System.out.println(myList);
+            System.out.println("-----");
+
+            //Sort & Show list
+            sortList(myList);
+            showSortedList(myList);
+            System.out.println("-----");
+
+            //Get the highest number
+            int highest = showHighestUnique(myList);
+
+            if (highest == -1) {
+                System.out.println("Det finns inget unikt heltal.");
+            } else {
+                System.out.println(highest);
+            }
         }
 
     }
@@ -50,7 +70,7 @@ public class Main {
                 return currentNumber; //return highest unique. If more than 1, it is not unique; The loop will stop and return value if freq. in list is 1. If more than 1 it will continue to run until next one is found.
             }
         }
-        return  -1; //fallback
+        return -1; //fallback
     }
 
     static void showSortedList(ArrayList<Integer> myList) {
@@ -59,7 +79,8 @@ public class Main {
             System.out.println("- " + number);
         }
     }
-    static ArrayList<Integer> sortList(ArrayList<Integer> myList){
+
+    static ArrayList<Integer> sortList(ArrayList<Integer> myList) {
 
         //Sort arraylist from highest to lowest
         Collections.sort(myList, Collections.reverseOrder());
@@ -77,5 +98,23 @@ public class Main {
         }
 
         return myList;
+    }
+
+    static HashMap<Integer, Integer> createHashMapList(HashMap<Integer, Integer> scoreboardHash, ArrayList<Integer> myList) {
+
+
+        for (int number : myList) {
+            scoreboardHash.put(number, 0);
+        }
+
+        for (int checkNumber : myList) {
+            if (scoreboardHash.containsKey(checkNumber)) {
+
+                int updateValue = scoreboardHash.get(checkNumber);
+                scoreboardHash.put(checkNumber, updateValue + 1);
+            }
+        }
+
+        return scoreboardHash;
     }
 }
