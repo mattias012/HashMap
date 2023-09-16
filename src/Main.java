@@ -36,6 +36,7 @@ public class Main {
 
             createHashMapList(scoreboardHash, myList);
             System.out.println(scoreboardHash);
+
         } else { //Run standard version
 
             //Create list
